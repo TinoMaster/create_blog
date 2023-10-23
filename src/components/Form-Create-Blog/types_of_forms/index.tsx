@@ -1,11 +1,15 @@
+/* import { useForm } from "../../../hooks/useForm"; */
 import { useImage } from "../../../hooks/useImage";
 import { ICategoryProps } from "../../../types/categories.type";
+import { Buttons } from "./Buttons";
 import { Content } from "./Content";
 import { Image } from "./Image";
 import { Title } from "./Title";
 
 export const Form = ({ type }: ICategoryProps) => {
   const { onDropImage, preview, handleImageChange } = useImage();
+  /* const { onSectionChange } = useForm(); */
+
   return (
     <form action="" className="flex flex-col gap-4">
       <Title />
@@ -19,17 +23,7 @@ export const Form = ({ type }: ICategoryProps) => {
       {type === "code" || type === "principal" || type === "text" ? (
         <Content />
       ) : null}
-
-      <input
-        type="button"
-        value="Crear Seccion"
-        className="p-2 bg-gray-600 rounded"
-      />
-      <input
-        type="submit"
-        value="Crear Blog"
-        className="p-2 bg-violet-600 rounded"
-      />
+      <Buttons />
     </form>
   );
 };
