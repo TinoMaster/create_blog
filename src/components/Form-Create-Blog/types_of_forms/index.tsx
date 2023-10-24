@@ -7,6 +7,7 @@ import { Content } from "./Content";
 import { Image } from "./Image";
 import { Title } from "./Title";
 import { CategoryBlog } from "./CategoryBlog";
+import { DescriptionBlog } from "./DescriptionBlog";
 
 export const Form = ({ category }: ICategoryProps) => {
   const { onDropImage, preview, handleImageChange, image } = useImage(category);
@@ -15,6 +16,7 @@ export const Form = ({ category }: ICategoryProps) => {
 
   return (
     <form action="" className="flex flex-col gap-4">
+      <CategoryBlog onPrincipalChange={onPrincipalChange} category={category} />
       <Title
         category={category}
         onPrincipalChange={onPrincipalChange}
@@ -22,7 +24,11 @@ export const Form = ({ category }: ICategoryProps) => {
         section={section}
         principalContent={principalContent}
       />
-      <CategoryBlog category={category} />
+      <DescriptionBlog
+        category={category}
+        onPrincipalChange={onPrincipalChange}
+        principalContent={principalContent}
+      />
       <Image
         preview={preview}
         handleImageChange={handleImageChange}

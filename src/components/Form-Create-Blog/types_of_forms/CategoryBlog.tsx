@@ -3,9 +3,13 @@ import { TCategory } from "../../../types/categories.type";
 
 interface CategoryBlogProps {
   category: TCategory;
+  onPrincipalChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const CategoryBlog = ({ category }: CategoryBlogProps) => {
+export const CategoryBlog = ({
+  category,
+  onPrincipalChange,
+}: CategoryBlogProps) => {
   return (
     <div
       className={`flex flex-col ${
@@ -13,7 +17,11 @@ export const CategoryBlog = ({ category }: CategoryBlogProps) => {
       }`}
     >
       <label htmlFor="category_imput">Category</label>
-      <select className="block w-full bg-zinc-800 text-gray-200 py-2 px-2 rounded leading-tight focus:outline-none focus:border-blue-500 focus:bg-zinc-800">
+      <select
+        onChange={onPrincipalChange}
+        name="category"
+        className="block w-full bg-zinc-800 text-gray-200 py-2 px-2 rounded leading-tight focus:outline-none focus:border-blue-500 focus:bg-zinc-800"
+      >
         <option value="" className="">
           --Eliga una categoria--
         </option>

@@ -14,13 +14,24 @@ export const useForm = (category: TCategory, image: File | null) => {
     blogs.initialPrincipalSection
   );
   const [section, setSection] = useState<ISectionBlog>(blogs.initialSection);
-  console.log(image);
+  console.log(principalContent);
 
   /* Effects */
   useEffect(() => {
     setSection(blogs.initialSection);
     setPrincipalContent(blogs.initialPrincipalSection);
   }, [category]);
+  useEffect(() => {
+    if (image) {
+      const preview = URL.createObjectURL(image);
+      if (category === "principal") {
+        setPrincipalContent({ ...principalContent, image: preview });
+      } else {
+        setSection({ ...section, content: preview });
+      }
+    }
+  }, [image]);
+
   /* Functions */
   const onSubmitPrincipal = () => {
     if (validateSectionPrincipal(principalContent)) {
@@ -38,7 +49,9 @@ export const useForm = (category: TCategory, image: File | null) => {
     }
   };
   const onPrincipalChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     setPrincipalContent({
       ...principalContent,
