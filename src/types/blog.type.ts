@@ -14,6 +14,6 @@ export interface IPrincipalSection extends Omit<IBlog, "sections"> {}
 export interface ISectionBlog {
   id: number;
   title?: string;
-  type: TCategory;
+  category: TCategory;
   content: string;
 }

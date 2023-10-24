@@ -20,7 +20,7 @@ const initialPrincipalSection: IPrincipalSection = {
 const initialSection: ISectionBlog = {
   id: 0,
   title: "",
-  type: "principal",
+  category: "principal",
   content: "",
 };
 

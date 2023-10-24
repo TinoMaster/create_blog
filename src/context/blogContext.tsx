@@ -14,6 +14,8 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
   const [category, setCategory] = useState<TCategory>("principal");
 
   const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
+
     setCategory(e.target.value as TCategory);
   };
 

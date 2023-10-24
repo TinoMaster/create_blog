@@ -1,8 +1,35 @@
-export const Content = () => {
+import { IPrincipalSection, ISectionBlog } from "../../../types/blog.type";
+import { TCategory } from "../../../types/categories.type";
+
+interface ContentBlogProps {
+  category: TCategory;
+  onSectionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onPrincipalChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  section: ISectionBlog;
+  principalContent: IPrincipalSection;
+}
+
+export const Content = ({
+  category,
+  onSectionChange,
+  onPrincipalChange,
+  section,
+  principalContent,
+}: ContentBlogProps) => {
   return (
-    <div className="flex flex-col">
+    <div
+      className={`flex flex-col ${
+        category === "video" || category === "image" ? "hidden" : "block"
+      }`}
+    >
       <label htmlFor="text-area">Contenido</label>
       <textarea
+        onChange={(e) =>
+          category === "principal" ? onPrincipalChange(e) : onSectionChange(e)
+        }
+        value={
+          category === "principal" ? principalContent.content : section.content
+        }
         name="content"
         id="text-area"
         rows={10}

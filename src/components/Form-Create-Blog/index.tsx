@@ -6,5 +6,5 @@ export const FormCreateBlog = () => {
   const context = useContext(BlogContext);
   const category = context?.category;
 
-  return <div className="">{category && <Form type={category} />}</div>;
+  return <div className="">{category && <Form category={category} />}</div>;
 };
