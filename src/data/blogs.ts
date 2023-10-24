@@ -1,4 +1,9 @@
-import { IBlog, IPrincipalSection, ISectionBlog } from "../types/blog.type";
+import {
+  IBlog,
+  IPrincipalSection,
+  ISectionBlog,
+  TCategoryBlog,
+} from "../types/blog.type";
 
 const initialBlog: IBlog = {
   title: "",
@@ -24,4 +29,21 @@ const initialSection: ISectionBlog = {
   content: "",
 };
 
-export const blogs = { initialBlog, initialSection, initialPrincipalSection };
+const categoryBlog: TCategoryBlog[] = [
+  "javascript",
+  "react",
+  "tailwind",
+  "node",
+  "typescript",
+  "vsCode",
+  "curious",
+  "ui",
+  "next",
+];
+
+export const blogs = {
+  initialBlog,
+  initialSection,
+  initialPrincipalSection,
+  categoryBlog,
+};

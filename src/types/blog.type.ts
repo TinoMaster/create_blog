@@ -17,3 +17,14 @@ export interface ISectionBlog {
   category: TCategory;
   content: string;
 }
+
+export type TCategoryBlog =
+  | "javascript"
+  | "react"
+  | "next"
+  | "ui"
+  | "curious"
+  | "tailwind"
+  | "node"
+  | "typescript"
+  | "vsCode";

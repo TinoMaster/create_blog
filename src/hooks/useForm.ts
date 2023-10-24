@@ -2,48 +2,34 @@ import { useEffect, useState } from "react";
 import { IBlog, IPrincipalSection, ISectionBlog } from "../types/blog.type";
 import { blogs } from "../data/blogs";
 import { TCategory } from "../types/categories.type";
+import {
+  validateSection,
+  validateSectionPrincipal,
+} from "../validators/form.validator";
 
-export const useForm = (category: TCategory) => {
+export const useForm = (category: TCategory, image: File | null) => {
+  /* States */
   const [form, setForm] = useState<IBlog>(blogs.initialBlog);
   const [principalContent, setPrincipalContent] = useState<IPrincipalSection>(
     blogs.initialPrincipalSection
   );
   const [section, setSection] = useState<ISectionBlog>(blogs.initialSection);
+  console.log(image);
 
-  console.log(principalContent);
-  console.log(section);
-
+  /* Effects */
   useEffect(() => {
     setSection(blogs.initialSection);
     setPrincipalContent(blogs.initialPrincipalSection);
   }, [category]);
-
-  const validateSectionPrincipal = () => {
-    if (
-      principalContent.title === "" ||
-      principalContent.description === "" ||
-      principalContent.category === "" ||
-      principalContent.content === "" ||
-      principalContent.image === ""
-    ) {
-      return false;
-    }
-    return true;
-  };
-  const validateSection = () => {
-    if (section.content === "") {
-      return false;
-    }
-    return true;
-  };
+  /* Functions */
   const onSubmitPrincipal = () => {
-    if (validateSectionPrincipal()) {
+    if (validateSectionPrincipal(principalContent)) {
       setForm({ ...form, ...principalContent });
       setPrincipalContent(blogs.initialPrincipalSection);
     }
   };
   const onSubmitSection = () => {
-    if (validateSection()) {
+    if (validateSection(section)) {
       setForm({
         ...form,
         sections: [...form.sections, section],
