@@ -1,11 +1,11 @@
 import {
-  IBlog,
+  IBlogForm,
   IPrincipalSection,
   ISectionBlog,
   TCategoryBlog,
 } from "../types/blog.type";
 
-const initialBlog: IBlog = {
+const initialBlog: IBlogForm = {
   title: "",
   description: "",
   category: "",

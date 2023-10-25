@@ -1,38 +1,45 @@
 import { useEffect, useState } from "react";
-import { IBlog, IPrincipalSection, ISectionBlog } from "../types/blog.type";
+import { IBlogForm, IPrincipalSection, ISectionBlog } from "../types/blog.type";
 import { blogs } from "../data/blogs";
 import { TCategory } from "../types/categories.type";
 import {
   validateSection,
   validateSectionPrincipal,
 } from "../validators/form.validator";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useForm = (category: TCategory, image: File | null) => {
   /* States */
-  const [form, setForm] = useState<IBlog>(blogs.initialBlog);
+  const [value, setValue] = useLocalStorage("form");
+  const [form, setForm] = useState<IBlogForm>(value || blogs.initialBlog);
   const [principalContent, setPrincipalContent] = useState<IPrincipalSection>(
     blogs.initialPrincipalSection
   );
   const [section, setSection] = useState<ISectionBlog>(blogs.initialSection);
-  console.log(principalContent);
+  console.log(value);
+  console.log(image);
 
-  /* Effects */
+  /* //Todo: Crear la subida de la imagen cuando el usuario haga click en crear seccion */
+  /* const addImage = () => {
+    if (image) {
+      if (category === "principal") {
+        setPrincipalContent({ ...principalContent, image });
+      } else {
+        setSection({ ...section, content: image });
+      }
+    }
+  }; */
+
+  /* EFFECTS */
   useEffect(() => {
     setSection(blogs.initialSection);
     setPrincipalContent(blogs.initialPrincipalSection);
   }, [category]);
   useEffect(() => {
-    if (image) {
-      const preview = URL.createObjectURL(image);
-      if (category === "principal") {
-        setPrincipalContent({ ...principalContent, image: preview });
-      } else {
-        setSection({ ...section, content: preview });
-      }
-    }
-  }, [image]);
+    setValue(form);
+  }, [form]);
 
-  /* Functions */
+  /* FUNCTIONS */
   const onSubmitPrincipal = () => {
     if (validateSectionPrincipal(principalContent)) {
       setForm({ ...form, ...principalContent });

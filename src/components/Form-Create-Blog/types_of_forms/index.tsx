@@ -11,8 +11,14 @@ import { DescriptionBlog } from "./DescriptionBlog";
 
 export const Form = ({ category }: ICategoryProps) => {
   const { onDropImage, preview, handleImageChange, image } = useImage(category);
-  const { onSectionChange, onPrincipalChange, section, principalContent } =
-    useForm(category, image);
+  const {
+    onSectionChange,
+    onPrincipalChange,
+    section,
+    principalContent,
+    onSubmitPrincipal,
+    onSubmitSection,
+  } = useForm(category, image);
 
   return (
     <form action="" className="flex flex-col gap-4">
@@ -42,7 +48,11 @@ export const Form = ({ category }: ICategoryProps) => {
         section={section}
         principalContent={principalContent}
       />
-      <Buttons />
+      <Buttons
+        onSubmitSection={onSubmitSection}
+        onSubmitPrincipal={onSubmitPrincipal}
+        category={category}
+      />
     </form>
   );
 };

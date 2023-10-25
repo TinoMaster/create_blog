@@ -9,13 +9,18 @@ export interface IBlog {
   sections: ISectionBlog[];
 }
 
-export interface IPrincipalSection extends Omit<IBlog, "sections"> {}
+export interface IPrincipalSection extends Omit<IBlog, "sections" | "image"> {
+  image: File | "";
+}
+export interface IBlogForm extends Omit<IBlog, "image"> {
+  image: File | "";
+}
 
 export interface ISectionBlog {
   id: number;
   title?: string;
   category: TCategory;
-  content: string;
+  content: string | File;
 }
 
 export type TCategoryBlog =
