@@ -4,11 +4,6 @@ export interface ISaveImageRes {
   error?: string; // Opcional, para manejar errores
 }
 
-/* interface IBlogClass {
-  baseUrl: string;
-  saveImage(image: File): Promise<ISaveImageRes>;
-} */
-
 class Blog {
   constructor(private baseUrl: string) {}
 

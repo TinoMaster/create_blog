@@ -19,8 +19,9 @@ export const useForm = (category: TCategory, image: File | null) => {
   const [section, setSection] = useState<ISectionBlog>(blogs.initialSection);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  console.log(principalContent);
 
+
+  /* //Todo: refactorizar este hook */
   /* EFFECTS */
   useEffect(() => {
     setSection(blogs.initialSection);
@@ -53,6 +54,7 @@ export const useForm = (category: TCategory, image: File | null) => {
       setError("Complete los campos necesarios");
     }
   };
+
   const onSubmitSection = () => {
     if (validateSection(section)) {
       setForm({
@@ -62,6 +64,7 @@ export const useForm = (category: TCategory, image: File | null) => {
       setSection(blogs.initialSection);
     }
   };
+
   const onPrincipalChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -73,6 +76,7 @@ export const useForm = (category: TCategory, image: File | null) => {
       [e.target.name]: e.target.value,
     });
   };
+
   const onSectionChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
