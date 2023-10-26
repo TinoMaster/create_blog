@@ -18,10 +18,22 @@ export const Form = ({ category }: ICategoryProps) => {
     principalContent,
     onSubmitPrincipal,
     onSubmitSection,
+    error,
+    loading,
   } = useForm(category, image);
 
   return (
-    <form action="" className="flex flex-col gap-4">
+    <form action="" className="flex flex-col gap-4 relative">
+      {error && (
+        <div className="absolute bg-red-400 text-white text-center rounded-md p-2">
+          {error}
+        </div>
+      )}
+      {loading && (
+        <div className="absolute bg-green-400 text-white text-center rounded-md p-2">
+          Loading...
+        </div>
+      )}
       <CategoryBlog onPrincipalChange={onPrincipalChange} category={category} />
       <Title
         category={category}

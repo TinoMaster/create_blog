@@ -5,8 +5,7 @@ export const validateSectionPrincipal = (section: IPrincipalSection) => {
     section.title === "" ||
     section.description === "" ||
     section.category === "" ||
-    section.content === "" ||
-    section.image === ""
+    section.content === ""
   ) {
     return false;
   }

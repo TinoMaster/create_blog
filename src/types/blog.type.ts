@@ -12,9 +12,6 @@ export interface IBlog {
 export interface IPrincipalSection extends Omit<IBlog, "sections" | "image"> {
   image: File | "";
 }
-export interface IBlogForm extends Omit<IBlog, "image"> {
-  image: File | "";
-}
 
 export interface ISectionBlog {
   id: number;
