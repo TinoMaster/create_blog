@@ -1,25 +1,25 @@
-interface ISaveImageRes {
+export interface ISaveImageRes {
   success?: boolean;
-  error?: string;
-  location?: string;
+  location?: string; // Opcional, dependiendo de la estructura real de la respuesta
+  error?: string; // Opcional, para manejar errores
 }
 
-interface IBlogClass {
+/* interface IBlogClass {
   baseUrl: string;
   saveImage(image: File): Promise<ISaveImageRes>;
-}
+} */
 
-class Blog implements IBlogClass {
-  constructor(public baseUrl: string) {}
+class Blog {
+  constructor(private baseUrl: string) {}
 
-  async saveImage(image: File) {
+  async saveImage(image: File): Promise<ISaveImageRes> {
     const formData = new FormData();
     formData.append("image", image);
     const res = await fetch(`${this.baseUrl}/image`, {
       method: "POST",
       body: formData,
     });
-    const data = await res.json();
+    const data: ISaveImageRes = await res.json();
     return data;
   }
 }
