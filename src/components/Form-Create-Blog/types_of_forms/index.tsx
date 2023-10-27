@@ -20,10 +20,11 @@ export const Form = ({ category }: ICategoryProps) => {
     onSubmitSection,
     error,
     loading,
+    formRef,
   } = useForm(category, image);
 
   return (
-    <form action="" className="flex flex-col gap-4 relative">
+    <form action="" ref={formRef} className="flex flex-col gap-4 relative">
       {error && (
         <div className="absolute bg-red-400 text-white text-center rounded-md p-2">
           {error}
