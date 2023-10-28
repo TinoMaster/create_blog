@@ -8,6 +8,8 @@ import { Image } from "./Image";
 import { Title } from "./Title";
 import { CategoryBlog } from "./CategoryBlog";
 import { DescriptionBlog } from "./DescriptionBlog";
+import LoadingPage from "../../Loaders/LoadingPage";
+import { ErrorForm } from "../../Error/ErrorForm";
 
 export const Form = ({ category }: ICategoryProps) => {
   const { onDropImage, preview, handleImageChange, image } = useImage(category);
@@ -25,16 +27,8 @@ export const Form = ({ category }: ICategoryProps) => {
 
   return (
     <form action="" ref={formRef} className="flex flex-col gap-4 relative">
-      {error && (
-        <div className="absolute bg-red-400 text-white text-center rounded-md p-2">
-          {error}
-        </div>
-      )}
-      {loading && (
-        <div className="absolute bg-green-400 text-white text-center rounded-md p-2">
-          Loading...
-        </div>
-      )}
+      {error && <ErrorForm error={error} />}
+      {loading && <LoadingPage />}
       <CategoryBlog onPrincipalChange={onPrincipalChange} category={category} />
       <Title
         category={category}

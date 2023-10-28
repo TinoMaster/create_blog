@@ -24,6 +24,8 @@ export const useForm = (category: TCategory, image: File | null) => {
   useEffect(() => {
     setSection(blogs.initialSection);
     setPrincipalContent(blogs.initialPrincipalSection);
+    setError("");
+    formRef.current?.reset;
   }, [category]);
 
   /* FUNCTIONS */

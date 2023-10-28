@@ -4,11 +4,16 @@ import { RenderBlog } from "../Render-Blog";
 
 export const Container = () => {
   return (
-    <div className="w-full max-w-[700px] m-auto">
-      <h1 className="text-center">Create Blog</h1>
-      <Category />
-      <FormCreateBlog />
-      <RenderBlog />
-    </div>
+    <section className="flex flex-wrap w-full">
+      <div className="lg:w-1/2 p-5 space-y-10">
+        <h2 className="text-center">Create Blog</h2>
+        <Category />
+        <FormCreateBlog />
+      </div>
+      <div className="lg:w-1/2 p-5 shadow-inner shadow-black">
+        <h2 className="text-center">Render Blog</h2>
+        <RenderBlog />
+      </div>
+    </section>
   );
 };
