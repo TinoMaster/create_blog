@@ -1,5 +1,3 @@
-import { TCategory } from "./categories.type";
-
 export interface IBlog {
   title: string;
   description: string;
@@ -9,15 +7,12 @@ export interface IBlog {
   sections: ISectionBlog[];
 }
 
-export interface IPrincipalSection extends Omit<IBlog, "sections" | "image"> {
-  image: File | "";
-}
+export interface IPrincipalSection extends Omit<IBlog, "sections"> {}
 
 export type SectionType = "code" | "text" | "image" | "video";
 export interface ISectionBlog {
   id: number;
   title?: string;
-  category: TCategory;
   type: SectionType;
   content: string;
 }

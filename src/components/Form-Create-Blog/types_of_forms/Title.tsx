@@ -1,8 +1,8 @@
 import { IPrincipalSection, ISectionBlog } from "../../../types/blog.type";
-import { TCategory } from "../../../types/categories.type";
+import { TSectionPage } from "../../../types/categories.type";
 
 interface TitleSectionProps {
-  category: TCategory;
+  sectionPage: TSectionPage;
   onSectionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onPrincipalChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   section: ISectionBlog;
@@ -10,7 +10,7 @@ interface TitleSectionProps {
 }
 
 export const Title = ({
-  category,
+  sectionPage,
   onSectionChange,
   onPrincipalChange,
   section,
@@ -21,13 +21,15 @@ export const Title = ({
       <label htmlFor="input_title">Titulo</label>
       <input
         onChange={(e) =>
-          category === "principal" ? onPrincipalChange(e) : onSectionChange(e)
+          sectionPage === "principal"
+            ? onPrincipalChange(e)
+            : onSectionChange(e)
         }
         id="input_title"
         name="title"
         type="text"
         value={
-          category === "principal" ? principalContent.title : section.title
+          sectionPage === "principal" ? principalContent.title : section.title
         }
         className="p-2 rounded bg-white/10 placeholder:text-slate-100/20 font-thin focus:outline-none shadow"
         placeholder="Titulo del contenido..."

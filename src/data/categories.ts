@@ -1,6 +1,6 @@
-import { TCategory } from "../types/categories.type";
+import { TSectionPage } from "../types/categories.type";
 
-export const categories: TCategory[] = [
+export const sectionsPage: TSectionPage[] = [
   "principal",
   "code",
   "image",

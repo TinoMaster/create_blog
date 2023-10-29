@@ -1,14 +1,14 @@
 import {
-  IBlogForm,
+  IBlog,
   IPrincipalSection,
   ISectionBlog,
   TCategoryBlog,
 } from "../types/blog.type";
 
-const initialBlog: IBlogForm = {
+const initialBlog: IBlog = {
   title: "",
   description: "",
-  category: "",
+  category: "javascript",
   content: "",
   image: "",
   sections: [],
@@ -17,7 +17,7 @@ const initialBlog: IBlogForm = {
 const initialPrincipalSection: IPrincipalSection = {
   title: "",
   description: "",
-  category: "",
+  category: "javascript",
   content: "",
   image: "",
 };
@@ -25,7 +25,7 @@ const initialPrincipalSection: IPrincipalSection = {
 const initialSection: ISectionBlog = {
   id: 0,
   title: "",
-  category: "principal",
+  type: "text",
   content: "",
 };
 

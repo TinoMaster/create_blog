@@ -1,4 +1,4 @@
-import { Category } from "../Categories";
+import { SectionPage } from "../Section Page";
 import { FormCreateBlog } from "../Form-Create-Blog";
 import { RenderBlog } from "../Render-Blog";
 
@@ -7,7 +7,7 @@ export const Container = () => {
     <section className="flex flex-wrap w-full">
       <div className="lg:w-1/2 p-5 space-y-10">
         <h2 className="text-center">Create Blog</h2>
-        <Category />
+        <SectionPage />
         <FormCreateBlog />
       </div>
       <div className="lg:w-1/2 p-5 shadow-inner shadow-black">

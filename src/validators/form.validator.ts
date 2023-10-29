@@ -4,7 +4,7 @@ export const validateSectionPrincipal = (section: IPrincipalSection) => {
   if (
     section.title === "" ||
     section.description === "" ||
-    section.category === "" ||
+    section.category === undefined ||
     section.content === ""
   ) {
     return false;

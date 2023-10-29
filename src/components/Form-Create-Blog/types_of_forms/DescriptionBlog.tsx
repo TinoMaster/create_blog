@@ -1,21 +1,21 @@
 import { IPrincipalSection } from "../../../types/blog.type";
-import { TCategory } from "../../../types/categories.type";
+import { TSectionPage } from "../../../types/categories.type";
 
 interface DescriptionBlogProps {
-  category: TCategory;
+  sectionPage: TSectionPage;
   onPrincipalChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   principalContent: IPrincipalSection;
 }
 
 export const DescriptionBlog = ({
-  category,
+  sectionPage,
   onPrincipalChange,
   principalContent,
 }: DescriptionBlogProps) => {
   return (
     <div
       className={`flex flex-col ${
-        category === "principal" ? "flex" : "hidden"
+        sectionPage === "principal" ? "flex" : "hidden"
       }`}
     >
       <label htmlFor="">Descripcion</label>

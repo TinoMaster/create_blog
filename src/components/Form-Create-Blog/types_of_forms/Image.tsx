@@ -1,25 +1,27 @@
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { TCategory } from "../../../types/categories.type";
+import { TSectionPage } from "../../../types/categories.type";
 
 interface ImageProps {
   preview: string | null;
   handleImageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDropImage: (e: React.DragEvent<HTMLDivElement>) => void;
-  category: TCategory;
+  sectionPage: TSectionPage;
 }
 
 export const Image = ({
   preview,
   handleImageChange,
   onDropImage,
-  category,
+  sectionPage,
 }: ImageProps) => {
   return (
     <div
       onDragOver={(e: React.DragEvent<HTMLDivElement>) => e.preventDefault()}
       onDrop={(e: React.DragEvent<HTMLDivElement>) => onDropImage(e)}
       className={`flex flex-col ${
-        category === "principal" || category === "image" || category === "video"
+        sectionPage === "principal" ||
+        sectionPage === "image" ||
+        sectionPage === "video"
           ? "block"
           : "hidden"
       }`}

@@ -1,17 +1,19 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IPrincipalSection, ISectionBlog } from "../types/blog.type";
 import { blogs } from "../data/blogs";
-import { TCategory } from "../types/categories.type";
+import { TSectionPage } from "../types/categories.type";
 import {
   validateSection,
   validateSectionPrincipal,
 } from "../validators/form.validator";
 import { ISaveImageRes, blogService } from "../services/blog.service";
-import BlogContext, { BlogContextType } from "../context/blogContext";
+import { useDispatch } from "react-redux";
+import { setPrincipalRD, setSectionRD } from "../redux/reducers/blog/blogSlice";
 
-export const useForm = (category: TCategory, image: File | null) => {
+export const useForm = (sectionPage: TSectionPage, image: File | null) => {
+  /* Redux */
+  const dispatch = useDispatch();
   /* States */
-  const { form, setForm } = useContext(BlogContext) as BlogContextType;
   const [principalContent, setPrincipalContent] = useState<IPrincipalSection>(
     blogs.initialPrincipalSection
   );
@@ -26,7 +28,7 @@ export const useForm = (category: TCategory, image: File | null) => {
     setPrincipalContent(blogs.initialPrincipalSection);
     setError("");
     formRef.current?.reset;
-  }, [category]);
+  }, [sectionPage]);
 
   /* FUNCTIONS */
   const onSubmitPrincipal = async () => {
@@ -38,7 +40,7 @@ export const useForm = (category: TCategory, image: File | null) => {
         res = await blogService.saveImage(image);
       }
       if (res && res.success && res.location) {
-        setForm({ ...form, ...principalContent, image: res.location });
+        dispatch(setPrincipalRD(principalContent));
         setPrincipalContent(blogs.initialPrincipalSection);
         setLoading(false);
         formRef.current?.reset;
@@ -54,10 +56,7 @@ export const useForm = (category: TCategory, image: File | null) => {
 
   const onSubmitSection = () => {
     if (validateSection(section)) {
-      setForm({
-        ...form,
-        sections: [...form.sections, section],
-      });
+      dispatch(setSectionRD(section));
       setSection(blogs.initialSection);
       formRef.current?.reset;
     }
@@ -79,7 +78,13 @@ export const useForm = (category: TCategory, image: File | null) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setError("");
-    setSection({ ...section, [e.target.name]: e.target.value, category });
+    if (sectionPage !== "principal") {
+      setSection({
+        ...section,
+        [e.target.name]: e.target.value,
+        type: sectionPage,
+      });
+    }
   };
 
   return {

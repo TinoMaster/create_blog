@@ -1,20 +1,22 @@
-import { TCategory } from "../../../types/categories.type";
+import { TSectionPage } from "../../../types/categories.type";
 
 interface ButtonsProps {
   onSubmitSection: () => void;
   onSubmitPrincipal: () => void;
-  category: TCategory;
+  sectionPage: TSectionPage;
 }
 
 export const Buttons = ({
   onSubmitSection,
   onSubmitPrincipal,
-  category,
+  sectionPage,
 }: ButtonsProps) => {
   return (
     <>
       <input
-        onClick={category === "principal" ? onSubmitPrincipal : onSubmitSection}
+        onClick={
+          sectionPage === "principal" ? onSubmitPrincipal : onSubmitSection
+        }
         type="button"
         value="Crear Seccion"
         className="p-2 bg-gray-600 rounded"

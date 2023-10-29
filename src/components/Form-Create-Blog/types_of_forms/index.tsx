@@ -1,7 +1,7 @@
 /* import { useForm } from "../../../hooks/useForm"; */
 import { useForm } from "../../../hooks/useForm";
 import { useImage } from "../../../hooks/useImage";
-import { ICategoryProps } from "../../../types/categories.type";
+import { ISectionPageProps } from "../../../types/categories.type";
 import { Buttons } from "./Buttons";
 import { Content } from "./Content";
 import { Image } from "./Image";
@@ -11,8 +11,9 @@ import { DescriptionBlog } from "./DescriptionBlog";
 import LoadingPage from "../../Loaders/LoadingPage";
 import { ErrorForm } from "../../Error/ErrorForm";
 
-export const Form = ({ category }: ICategoryProps) => {
-  const { onDropImage, preview, handleImageChange, image } = useImage(category);
+export const Form = ({ sectionPage }: ISectionPageProps) => {
+  const { onDropImage, preview, handleImageChange, image } =
+    useImage(sectionPage);
   const {
     onSectionChange,
     onPrincipalChange,
@@ -23,22 +24,25 @@ export const Form = ({ category }: ICategoryProps) => {
     error,
     loading,
     formRef,
-  } = useForm(category, image);
+  } = useForm(sectionPage, image);
 
   return (
     <form action="" ref={formRef} className="flex flex-col gap-4 relative">
       {error && <ErrorForm error={error} />}
       {loading && <LoadingPage />}
-      <CategoryBlog onPrincipalChange={onPrincipalChange} category={category} />
+      <CategoryBlog
+        onPrincipalChange={onPrincipalChange}
+        sectionPage={sectionPage}
+      />
       <Title
-        category={category}
+        sectionPage={sectionPage}
         onPrincipalChange={onPrincipalChange}
         onSectionChange={onSectionChange}
         section={section}
         principalContent={principalContent}
       />
       <DescriptionBlog
-        category={category}
+        sectionPage={sectionPage}
         onPrincipalChange={onPrincipalChange}
         principalContent={principalContent}
       />
@@ -46,10 +50,10 @@ export const Form = ({ category }: ICategoryProps) => {
         preview={preview}
         handleImageChange={handleImageChange}
         onDropImage={onDropImage}
-        category={category}
+        sectionPage={sectionPage}
       />
       <Content
-        category={category}
+        sectionPage={sectionPage}
         onPrincipalChange={onPrincipalChange}
         onSectionChange={onSectionChange}
         section={section}
@@ -58,7 +62,7 @@ export const Form = ({ category }: ICategoryProps) => {
       <Buttons
         onSubmitSection={onSubmitSection}
         onSubmitPrincipal={onSubmitPrincipal}
-        category={category}
+        sectionPage={sectionPage}
       />
     </form>
   );

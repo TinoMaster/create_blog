@@ -1,5 +1,5 @@
-export type TCategory = "principal" | "image" | "text" | "video" | "code";
+export type TSectionPage = "principal" | "image" | "text" | "video" | "code";
 
-export interface ICategoryProps {
-  category: TCategory;
+export interface ISectionPageProps {
+  sectionPage: TSectionPage;
 }

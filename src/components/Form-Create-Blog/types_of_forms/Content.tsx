@@ -1,8 +1,8 @@
 import { IPrincipalSection, ISectionBlog } from "../../../types/blog.type";
-import { TCategory } from "../../../types/categories.type";
+import { TSectionPage } from "../../../types/categories.type";
 
 interface ContentBlogProps {
-  category: TCategory;
+  sectionPage: TSectionPage;
   onSectionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onPrincipalChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   section: ISectionBlog;
@@ -10,7 +10,7 @@ interface ContentBlogProps {
 }
 
 export const Content = ({
-  category,
+  sectionPage,
   onSectionChange,
   onPrincipalChange,
   section,
@@ -19,16 +19,20 @@ export const Content = ({
   return (
     <div
       className={`flex flex-col ${
-        category === "video" || category === "image" ? "hidden" : "block"
+        sectionPage === "video" || sectionPage === "image" ? "hidden" : "block"
       }`}
     >
       <label htmlFor="text-area">Contenido</label>
       <textarea
         onChange={(e) =>
-          category === "principal" ? onPrincipalChange(e) : onSectionChange(e)
+          sectionPage === "principal"
+            ? onPrincipalChange(e)
+            : onSectionChange(e)
         }
         value={
-          category === "principal" ? principalContent.content : section.content
+          sectionPage === "principal"
+            ? principalContent.content
+            : section.content
         }
         name="content"
         id="text-area"

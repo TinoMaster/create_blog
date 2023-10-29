@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { TCategory } from "../types/categories.type";
+import { TSectionPage } from "../types/categories.type";
 
-export const useImage = (category: TCategory) => {
+export const useImage = (sectionPage: TSectionPage) => {
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
   useEffect(() => {
     setImage(null);
     setPreview(null);
-  }, [category]);
+  }, [sectionPage]);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
