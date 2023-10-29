@@ -19,13 +19,9 @@ export const Buttons = ({
         }
         type="button"
         value="Crear Seccion"
-        className="p-2 bg-gray-600 rounded"
+        className="btn btn-secondary"
       />
-      <input
-        type="submit"
-        value="Crear Blog"
-        className="p-2 bg-violet-600 rounded"
-      />
+      <input type="submit" value="Crear Blog" className="btn btn-primary" />
     </>
   );
 };

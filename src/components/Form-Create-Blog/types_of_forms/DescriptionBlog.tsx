@@ -18,14 +18,17 @@ export const DescriptionBlog = ({
         sectionPage === "principal" ? "flex" : "hidden"
       }`}
     >
-      <label htmlFor="">Descripcion</label>
+      <label htmlFor="description" className="label">
+        Descripcion
+      </label>
       <input
+        id="description"
         onChange={onPrincipalChange}
         type="text"
         value={principalContent.description}
         name="description"
         placeholder="Agregue una descripcion"
-        className="p-2 rounded bg-white/10 placeholder:text-slate-100/20 font-thin focus:outline-none shadow"
+        className="input"
       />
     </div>
   );

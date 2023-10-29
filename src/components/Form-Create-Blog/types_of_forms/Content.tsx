@@ -22,7 +22,9 @@ export const Content = ({
         sectionPage === "video" || sectionPage === "image" ? "hidden" : "block"
       }`}
     >
-      <label htmlFor="text-area">Contenido</label>
+      <label htmlFor="text-area" className="label">
+        Contenido
+      </label>
       <textarea
         onChange={(e) =>
           sectionPage === "principal"
@@ -38,7 +40,7 @@ export const Content = ({
         id="text-area"
         rows={10}
         placeholder="Agregue el contenido..."
-        className="resize-none bg-white/10 overflow-auto placeholder:text-slate-100/20 rounded p-2 focus:outline-none"
+        className="input resize-none overflow-auto"
       ></textarea>
     </div>
   );

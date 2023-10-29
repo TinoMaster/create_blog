@@ -9,7 +9,7 @@ export const RenderBlog = () => {
     useSelector((state: RootState) => state.blog);
   return (
     <div className="p-2 text-slate-200 font-light font-inter">
-      <div className="flex flex-col gap-3 mt-20">
+      <div className="flex flex-col gap-3">
         <div className="flex flex-col gap-3">
           <Header
             category={category}

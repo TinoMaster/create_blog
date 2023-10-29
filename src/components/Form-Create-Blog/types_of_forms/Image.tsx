@@ -26,7 +26,7 @@ export const Image = ({
           : "hidden"
       }`}
     >
-      <div className="w-full h-52 flex flex-col justify-center items-center text-slate-400/30 bg-white/5 overflow-hidden rounded">
+      <div className="w-full max-w-[500px] m-auto h-52 flex flex-col justify-center items-center text-slate-400/30 bg-white/5 overflow-hidden rounded">
         {preview ? (
           <img src={preview} alt="" className="w-full h-full object-cover" />
         ) : (
@@ -37,8 +37,14 @@ export const Image = ({
           </>
         )}
       </div>
-      <label htmlFor="">Imagen o video</label>
-      <input onChange={handleImageChange} type="file" />
+      <label htmlFor="" className="label max-w-[500px] m-auto">
+        Imagen o video
+      </label>
+      <input
+        onChange={handleImageChange}
+        type="file"
+        className="input max-w-[500px] m-auto label"
+      />
     </div>
   );
 };

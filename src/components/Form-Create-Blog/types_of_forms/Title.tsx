@@ -18,7 +18,9 @@ export const Title = ({
 }: TitleSectionProps) => {
   return (
     <div className="flex flex-col">
-      <label htmlFor="input_title">Titulo</label>
+      <label htmlFor="input_title" className="label">
+        Titulo
+      </label>
       <input
         onChange={(e) =>
           sectionPage === "principal"
@@ -31,7 +33,7 @@ export const Title = ({
         value={
           sectionPage === "principal" ? principalContent.title : section.title
         }
-        className="p-2 rounded bg-white/10 placeholder:text-slate-100/20 font-thin focus:outline-none shadow"
+        className="input"
         placeholder="Titulo del contenido..."
       />
     </div>

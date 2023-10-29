@@ -16,12 +16,10 @@ export const CategoryBlog = ({
         sectionPage === "principal" ? "flex" : "hidden"
       }`}
     >
-      <label htmlFor="category_imput">Category</label>
-      <select
-        onChange={onPrincipalChange}
-        name="type"
-        className="block w-full bg-zinc-800 text-gray-200 py-2 px-2 rounded leading-tight focus:outline-none focus:border-blue-500 focus:bg-zinc-800"
-      >
+      <label htmlFor="category_imput" className="label">
+        Category
+      </label>
+      <select onChange={onPrincipalChange} name="type" className="input">
         <option value="" className="">
           --Eliga una categoria--
         </option>

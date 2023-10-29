@@ -20,6 +20,7 @@ const blogSlice = createSlice({
   initialState,
   reducers: {
     setPrincipalRD: (state, action: PayloadAction<IPrincipalSection>) => {
+      localStorage("form", { ...state, ...action.payload });
       state.title = action.payload.title;
       state.description = action.payload.description;
       state.category = action.payload.category;
@@ -27,6 +28,10 @@ const blogSlice = createSlice({
       state.image = action.payload.image;
     },
     setSectionRD: (state, action: PayloadAction<ISectionBlog>) => {
+      localStorage("form", {
+        ...state,
+        sections: [...state.sections, action.payload],
+      });
       state.sections = [...state.sections, action.payload];
     },
     clearBlog: () => {
