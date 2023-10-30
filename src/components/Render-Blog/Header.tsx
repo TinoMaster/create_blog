@@ -1,28 +1,19 @@
+import { useSelector } from "react-redux";
 import { iconsHeadBlog } from "../../data/iconsHeadBlog";
+import { RootState } from "../../redux/store";
 import { IBlog } from "../../types/blog.type";
 import { whatColorIs } from "../../utils/colorIconBlog";
 import { FormatTextWithLinks } from "./FormatTextWithLinks";
 
-interface HeaderItemBlogProps {
-  title: IBlog["title"];
-  description: IBlog["description"];
-  image: IBlog["image"];
-  category: IBlog["category"];
-  content: IBlog["content"];
-}
-
-export const Header = ({
-  description,
-  image,
-  title,
-  category,
-  content,
-}: HeaderItemBlogProps) => {
+export const Header = () => {
+  const { title, category, content, image, description }: IBlog = useSelector(
+    (state: RootState) => state.blog
+  );
   const Icon = iconsHeadBlog[category];
   const background = whatColorIs(category);
   return (
-    <div className="flex flex-col gap-2 pt-[40px] lg:text-lg">
-      <h1 className="text-3xl font-bold">{title}</h1>
+    <div className="flex flex-col gap-2 pt-[40px] ">
+      <h2 className="font-bold">{title}</h2>
       <p className="font-semibold">{description}</p>
       <span className="text-xs">15/1/2012</span>
       <div className="flex items-center gap-2 text-2xl">

@@ -7,12 +7,14 @@ import {
   validateSectionPrincipal,
 } from "../validators/form.validator";
 import { ISaveImageRes, blogService } from "../services/blog.service";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPrincipalRD, setSectionRD } from "../redux/reducers/blog/blogSlice";
+import { RootState } from "../redux/store";
 
 export const useForm = (sectionPage: TSectionPage, image: File | null) => {
   /* Redux */
   const dispatch = useDispatch();
+  const { sections } = useSelector((state: RootState) => state.blog);
   /* States */
   const [principalContent, setPrincipalContent] = useState<IPrincipalSection>(
     blogs.initialPrincipalSection
@@ -24,7 +26,9 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
 
   /* EFFECTS */
   useEffect(() => {
-    setSection(blogs.initialSection);
+    if (sectionPage !== "principal") {
+      setSection({ ...blogs.initialSection, type: sectionPage });
+    }
     setPrincipalContent(blogs.initialPrincipalSection);
     setError("");
     formRef.current?.reset;
@@ -54,11 +58,25 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     }
   };
 
-  const onSubmitSection = () => {
+  const completeSectionInfo = async () => {
+    section.id = sections.length + 1;
+    if (sectionPage === "image" && image !== null) {
+      const res: ISaveImageRes = await blogService.saveImage(image);
+      if (res.success && res.location) {
+        section.content = res.location;
+      } else setError("Error al guardar la imagen");
+    }
+  };
+
+  const onSubmitSection = async () => {
+    setError("");
+    setLoading(true);
     if (validateSection(section)) {
+      await completeSectionInfo();
       dispatch(setSectionRD(section));
       setSection(blogs.initialSection);
       formRef.current?.reset;
+      setLoading(false);
     }
   };
 

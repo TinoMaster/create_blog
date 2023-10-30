@@ -28,5 +28,5 @@ export function FormatTextWithLinks({ text }: { text: string }) {
     lastIndex = match.index + match[0].length;
   }
 
-  return <>{parts}</>;
+  return <>{parts} </>;
 }

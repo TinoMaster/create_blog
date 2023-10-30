@@ -13,7 +13,7 @@ export const validateSectionPrincipal = (section: IPrincipalSection) => {
 };
 
 export const validateSection = (section: ISectionBlog) => {
-  if (section.content === "") {
+  if (section.type !== "image" && section.content === "") {
     return false;
   }
   return true;
