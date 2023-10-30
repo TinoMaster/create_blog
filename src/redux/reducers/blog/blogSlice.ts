@@ -5,7 +5,7 @@ import {
   ISectionBlog,
 } from "../../../types/blog.type";
 import { blogs } from "../../../data/blogs";
-import { localStorage } from "../../../utils/localStorage";
+import { localStorage, sortIdsbeforeRemove } from "../../../utils/localStorage";
 
 export interface BlogAction {
   setPrincipal: (payload: IBlog) => Action;
@@ -34,12 +34,19 @@ const blogSlice = createSlice({
       });
       state.sections = [...state.sections, action.payload];
     },
+    clearSection: (state, action: PayloadAction<ISectionBlog["id"]>) => {
+      const newState = sortIdsbeforeRemove(action.payload, state);
+      localStorage("form", newState);
+      state = newState;
+    },
     clearBlog: () => {
+      localStorage("form", blogs.initialBlog);
       return initialState;
     },
   },
 });
 
-export const { setPrincipalRD, setSectionRD, clearBlog } = blogSlice.actions;
+export const { setPrincipalRD, setSectionRD, clearBlog, clearSection } =
+  blogSlice.actions;
 
 export default blogSlice.reducer;
