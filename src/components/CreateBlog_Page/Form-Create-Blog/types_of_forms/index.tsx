@@ -1,17 +1,23 @@
 /* import { useForm } from "../../../hooks/useForm"; */
-import { useForm } from "../../../hooks/useForm";
-import { useImage } from "../../../hooks/useImage";
-import { ISectionPageProps } from "../../../types/categories.type";
+import { useForm } from "../../../../hooks/useForm";
+import { useImage } from "../../../../hooks/useImage";
+import { TSectionPage } from "../../../../types/categories.type";
 import { Buttons } from "./Buttons";
 import { Content } from "./Content";
 import { Image } from "./Image";
 import { Title } from "./Title";
 import { CategoryBlog } from "./CategoryBlog";
 import { DescriptionBlog } from "./DescriptionBlog";
-import LoadingPage from "../../Loaders/LoadingPage";
-import { ErrorForm } from "../../Error/ErrorForm";
+import LoadingPage from "../../../Loaders/LoadingPage";
+import { ErrorForm } from "../../../Error/ErrorForm";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../redux/store";
+import { SetIDSection } from "./SetIDSection";
 
-export const Form = ({ sectionPage }: ISectionPageProps) => {
+export const Form = () => {
+  const sectionPage: TSectionPage = useSelector(
+    (state: RootState) => state.section
+  );
   const { onDropImage, preview, handleImageChange, image } =
     useImage(sectionPage);
   const {
@@ -30,6 +36,7 @@ export const Form = ({ sectionPage }: ISectionPageProps) => {
     <form action="" ref={formRef} className="flex flex-col gap-4 relative">
       {error && <ErrorForm error={error} />}
       {loading && <LoadingPage />}
+      <SetIDSection />
       <CategoryBlog
         onPrincipalChange={onPrincipalChange}
         sectionPage={sectionPage}

@@ -1,5 +1,5 @@
-import { IPrincipalSection } from "../../../types/blog.type";
-import { TSectionPage } from "../../../types/categories.type";
+import { IPrincipalSection } from "../../../../types/blog.type";
+import { TSectionPage } from "../../../../types/categories.type";
 
 interface DescriptionBlogProps {
   sectionPage: TSectionPage;

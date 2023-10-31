@@ -1,5 +1,5 @@
-import { blogs } from "../../../data/blogs";
-import { TSectionPage } from "../../../types/categories.type";
+import { blogs } from "../../../../data/blogs";
+import { TSectionPage } from "../../../../types/categories.type";
 
 interface CategoryBlogProps {
   sectionPage: TSectionPage;

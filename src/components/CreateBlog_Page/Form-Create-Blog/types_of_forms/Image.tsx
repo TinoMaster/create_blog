@@ -1,5 +1,5 @@
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { TSectionPage } from "../../../types/categories.type";
+import { TSectionPage } from "../../../../types/categories.type";
 
 interface ImageProps {
   preview: string | null;

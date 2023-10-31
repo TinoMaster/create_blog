@@ -27,3 +27,18 @@ export const sortIdsbeforeRemove = (
   }
   return newState;
 };
+/* Revisar este codigo */
+export const sortSectionsBeforeInsert = (
+  newSection: ISectionBlog,
+  state: WritableDraft<IBlog>
+) => {
+  const { sections } = state;
+  const newState: IBlog = state;
+  const index = sections.findIndex((section) => section.id === newSection.id);
+  const newSections = sections.slice(index);
+  newSections.forEach((section) => {
+    section.id = section.id + 1;
+  });
+  newState.sections = [...sections.slice(0, index), newSection, ...newSections];
+  return newState;
+};

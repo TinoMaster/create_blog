@@ -1,4 +1,4 @@
-import { TSectionPage } from "../../../types/categories.type";
+import { TSectionPage } from "../../../../types/categories.type";
 
 interface ButtonsProps {
   onSubmitSection: () => void;

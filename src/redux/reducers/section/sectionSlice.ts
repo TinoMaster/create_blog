@@ -1,11 +1,11 @@
 import { Action, createSlice } from "@reduxjs/toolkit";
-import { TSection } from "../../../types/categories.type";
+import { TSectionPage } from "../../../types/categories.type";
 
 export interface SectionAction {
-  setSection: (payload: TSection) => Action;
+  setSection: (payload: TSectionPage) => Action;
 }
 
-const initialState: TSection = "principal";
+const initialState: TSectionPage = "principal";
 
 const sectionSlice = createSlice({
   name: "section",
