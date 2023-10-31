@@ -13,9 +13,9 @@ export const SetIDSection = ({ onChangeSectionID }: SetIDSectionProps) => {
   );
   const { sections }: IBlog = useSelector((state: RootState) => state.blog);
   const sectionAmount: Array<number> = [];
-  sections.forEach((sec, index) => {
-    sectionAmount.push(index + 1);
-  });
+  for (const pos in sections) {
+    sectionAmount.push(Number(pos) + 1);
+  }
   sectionAmount.push(sections.length + 1);
 
   return (
