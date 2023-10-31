@@ -1,12 +1,22 @@
 import { useSelector } from "react-redux";
-import { sectionsPage } from "../../../../data/categories";
 import { RootState } from "../../../../redux/store";
 import { TSectionPage } from "../../../../types/categories.type";
+import { IBlog } from "../../../../types/blog.type";
 
-export const SetIDSection = () => {
+interface SetIDSectionProps {
+  onChangeSectionID: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+}
+
+export const SetIDSection = ({ onChangeSectionID }: SetIDSectionProps) => {
   const section: TSectionPage = useSelector(
     (state: RootState) => state.section
   );
+  const { sections }: IBlog = useSelector((state: RootState) => state.blog);
+  const sectionAmount: Array<number> = [];
+  sections.forEach((sec, index) => {
+    sectionAmount.push(index + 1);
+  });
+  sectionAmount.push(sections.length + 1);
 
   return (
     <div
@@ -17,10 +27,15 @@ export const SetIDSection = () => {
       <label htmlFor="input_category" className="label">
         Seccion ID:
       </label>
-      <select name="category" id="input_category" className="input">
-        {sectionsPage.map((cat) => (
-          <option className="bg-zinc-800" key={cat} value={cat}>
-            {cat}
+      <select
+        onChange={onChangeSectionID}
+        name="id"
+        id="input_category"
+        className="input"
+      >
+        {sectionAmount.reverse().map((value) => (
+          <option className="bg-zinc-800" key={value} value={value}>
+            {value}
           </option>
         ))}
       </select>

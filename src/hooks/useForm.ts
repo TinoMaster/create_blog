@@ -20,8 +20,9 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     blogs.initialPrincipalSection
   );
   const [section, setSection] = useState<ISectionBlog>(blogs.initialSection);
+  const [actualSection, setActualSection] = useState(sections.length + 1);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
   /* EFFECTS */
@@ -58,8 +59,12 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     }
   };
 
+  const onChangeSectionID = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setActualSection(parseInt(e.target.value));
+  };
+
   const completeSectionInfo = async () => {
-    section.id = sections.length + 1;
+    section.id = actualSection;
     if (sectionPage === "image" && image !== null) {
       const res: ISaveImageRes = await blogService.saveImage(image);
       if (res.success && res.location) {
@@ -112,6 +117,7 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     onPrincipalChange,
     onSubmitSection,
     onSubmitPrincipal,
+    onChangeSectionID,
     error,
     loading,
     formRef,

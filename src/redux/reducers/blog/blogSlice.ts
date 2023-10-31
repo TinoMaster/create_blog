@@ -12,11 +12,12 @@ import {
 } from "../../../utils/localStorage";
 
 export interface BlogAction {
-  setPrincipalRD: (payload: IBlog) => Action;
+  setPrincipalRD: (payload: IPrincipalSection) => Action;
   setSectionRD: (payload: ISectionBlog) => Action;
   clearSection: (payload: ISectionBlog["id"]) => Action;
   clearBlog: () => Action;
 }
+
 const localS = localStorage("form");
 const initialState: IBlog = localS ?? blogs.initialBlog;
 
