@@ -44,9 +44,14 @@ const blogSlice = createSlice({
       localStorage("form", newState);
       state = newState;
     },
-    clearBlog: () => {
+    clearBlog: (state) => {
       localStorage("form", blogs.initialBlog);
-      return initialState;
+      state.title = initialState.title;
+      state.description = initialState.description;
+      state.category = initialState.category;
+      state.content = initialState.content;
+      state.image = initialState.image;
+      state.sections = initialState.sections;
     },
   },
 });

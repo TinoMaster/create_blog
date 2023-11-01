@@ -4,8 +4,10 @@ import { FormatTextWithLinks } from "../../Global/FormatTextWithLinks";
 
 export const SectionItemBlog = ({ section }: { section: ISectionBlog }) => {
   return (
-    <div className="flex flex-col lg:text-lg gap-5 p-2">
-      <h2 className="font-semibold text-lg lg:text-xl">{section.title}</h2>
+    <div className="flex flex-wrap lg:text-lg gap-5 p-2">
+      <h2 className="w-full font-semibold text-lg lg:text-xl">
+        {section.title}
+      </h2>
       {section.type === "image" ? (
         <div className="w-full p-2 bg-white/5">
           <img
@@ -19,7 +21,9 @@ export const SectionItemBlog = ({ section }: { section: ISectionBlog }) => {
         <FormatTextWithLinks text={section.content} />
       ) : null}
       {section.type === "code" ? (
-        <FormatCodeFromString codeString={section.content} />
+        <div className="w-full">
+          <FormatCodeFromString codeString={section.content} />
+        </div>
       ) : null}
     </div>
   );

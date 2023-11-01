@@ -8,7 +8,7 @@ import {
 const initialBlog: IBlog = {
   title: "",
   description: "",
-  category: "javascript",
+  category: "",
   content: "",
   image: "",
   sections: [],
