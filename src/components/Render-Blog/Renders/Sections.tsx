@@ -7,7 +7,7 @@ export const Sections = ({ render }: { render: string }) => {
   const { sections }: IBlog = useSelector((state: RootState) => state.blog);
 
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-5 py-4">
       {render === "blog"
         ? sections.map((section) => (
             <SectionItemBlog key={section.id} section={section} />

@@ -4,7 +4,7 @@ import { FormatTextWithLinks } from "../../Global/FormatTextWithLinks";
 
 export const SectionItemBlog = ({ section }: { section: ISectionBlog }) => {
   return (
-    <div className="flex flex-wrap lg:text-lg gap-5 p-2">
+    <div className="flex flex-wrap lg:text-lg">
       <h2 className="w-full font-semibold text-lg lg:text-xl">
         {section.title}
       </h2>
