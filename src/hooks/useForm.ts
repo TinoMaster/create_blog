@@ -1,14 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { IPrincipalSection, ISectionBlog } from "../types/blog.type";
+import { IBlog, IPrincipalSection, ISectionBlog } from "../types/blog.type";
 import { blogs } from "../data/blogs";
 import { TSectionPage } from "../types/categories.type";
 import {
+  validateForm,
   validateSection,
   validateSectionPrincipal,
 } from "../validators/form.validator";
 import { ISaveImageRes, blogService } from "../services/blog.service";
 import { useDispatch, useSelector } from "react-redux";
-import { setPrincipalRD, setSectionRD } from "../redux/reducers/blog/blogSlice";
+import {
+  clearBlog,
+  setPrincipalRD,
+  setSectionRD,
+} from "../redux/reducers/blog/blogSlice";
 import { RootState } from "../redux/store";
 
 export const useForm = (sectionPage: TSectionPage, image: File | null) => {
@@ -22,6 +27,7 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
   const [section, setSection] = useState<ISectionBlog>(blogs.initialSection);
   const [actualSection, setActualSection] = useState(sections.length + 1);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState({ success: false, message: "" });
   const [loading, setLoading] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -39,23 +45,40 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
   }, [sections]);
 
   /* FUNCTIONS */
-  const onSubmitPrincipal = async () => {
-    setLoading(true);
-    setError("");
-    if (validateSectionPrincipal(principalContent) && image !== null) {
-      let res: ISaveImageRes | undefined;
-      if (image) {
-        res = await blogService.saveImage(image);
-      }
+  const completePrincipalInfo = (res?: ISaveImageRes) => {
+    const done = () => {
+      setSuccess({ success: true, message: "Seccion Principal Creada" });
+      setPrincipalContent(blogs.initialPrincipalSection);
+      setLoading(false);
+      formRef.current?.reset;
+      setTimeout(() => {
+        setSuccess({ success: false, message: "" });
+      }, 3000);
+    };
+
+    if (res) {
       if (res && res.success && res.location) {
         dispatch(setPrincipalRD({ ...principalContent, image: res.location }));
-        setPrincipalContent(blogs.initialPrincipalSection);
-        setLoading(false);
-        formRef.current?.reset;
+        done();
       } else {
         setError("Error al guardar la imagen");
         setLoading(false);
       }
+    } else {
+      dispatch(setPrincipalRD({ ...principalContent }));
+      done();
+    }
+  };
+
+  const onSubmitPrincipal = async () => {
+    setLoading(true);
+    setError("");
+    if (validateSectionPrincipal(principalContent)) {
+      let res: ISaveImageRes | undefined;
+      if (image) {
+        res = await blogService.saveImage(image);
+        completePrincipalInfo(res);
+      } else completePrincipalInfo();
     } else {
       setLoading(false);
       setError("Complete los campos necesarios");
@@ -113,6 +136,30 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     }
   };
 
+  const onSubmitBlog = async (
+    e: React.FormEvent<HTMLFormElement>,
+    blog: IBlog
+  ) => {
+    e.preventDefault();
+    const validation = validateForm(blog);
+    if (!validation) {
+      setError("Complete los campos necesarios");
+      return;
+    } else {
+      const response = await blogService.saveBlog(blog);
+      if (response.success) {
+        setError("");
+        setSuccess({ success: true, message: "Blog Creado con exito" });
+        dispatch(clearBlog());
+        setTimeout(() => {
+          setSuccess({ success: false, message: "" });
+        }, 3000);
+      } else {
+        setError("Error al guardar el blog");
+      }
+    }
+  };
+
   return {
     section,
     actualSection,
@@ -122,8 +169,10 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     onSubmitSection,
     onSubmitPrincipal,
     onChangeSectionID,
+    onSubmitBlog,
     error,
     loading,
+    success,
     formRef,
   };
 };

@@ -9,15 +9,18 @@ import { Title } from "./Title";
 import { CategoryBlog } from "./CategoryBlog";
 import { DescriptionBlog } from "./DescriptionBlog";
 import LoadingPage from "../../../Loaders/LoadingPage";
-import { ErrorForm } from "../../../Error/ErrorForm";
+import { ErrorMessage } from "../../../Messages/Error";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../redux/store";
 import { SetIDSection } from "./SetIDSection";
+import { IBlog } from "../../../../types/blog.type";
+import { SuccessMessage } from "../../../Messages/Success";
 
 export const Form = () => {
   const sectionPage: TSectionPage = useSelector(
     (state: RootState) => state.section
   );
+  const blog: IBlog = useSelector((state: RootState) => state.blog);
   const { onDropImage, preview, handleImageChange, image } =
     useImage(sectionPage);
   const {
@@ -29,15 +32,23 @@ export const Form = () => {
     onSubmitPrincipal,
     onSubmitSection,
     onChangeSectionID,
+    onSubmitBlog,
     error,
     loading,
+    success,
     formRef,
   } = useForm(sectionPage, image);
 
   return (
-    <form action="" ref={formRef} className="flex flex-col gap-4 relative">
-      {error && <ErrorForm error={error} />}
+    <form
+      onSubmit={(e) => onSubmitBlog(e, blog)}
+      ref={formRef}
+      className="flex flex-col gap-4 relative"
+    >
+      {success.success && <SuccessMessage message={success.message} />}
+      {error && <ErrorMessage error={error} />}
       {loading && <LoadingPage />}
+      
       <SetIDSection
         onChangeSectionID={onChangeSectionID}
         actualSection={actualSection}

@@ -7,6 +7,12 @@ export interface IBlog {
   sections: ISectionBlog[];
 }
 
+export interface BlogResponse extends IBlog {
+  _id: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface IPrincipalSection extends Omit<IBlog, "sections"> {}
 
 export type SectionType = "code" | "text" | "image" | "video";

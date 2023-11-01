@@ -1,7 +1,16 @@
+import { BlogResponse, IBlog } from "../types/blog.type";
+
 export interface ISaveImageRes {
   success?: boolean;
   location?: string; // Opcional, dependiendo de la estructura real de la respuesta
   error?: string; // Opcional, para manejar errores
+}
+
+export interface ResponseSaveBlog {
+  success?: boolean;
+  data?: BlogResponse;
+  error?: boolean;
+  message?: string;
 }
 
 class Blog {
@@ -15,6 +24,18 @@ class Blog {
       body: formData,
     });
     const data: ISaveImageRes = await res.json();
+    return data;
+  }
+
+  async saveBlog(blog: IBlog) {
+    const res = await fetch(`${this.baseUrl}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(blog),
+    });
+    const data: ResponseSaveBlog = await res.json();
     return data;
   }
 }
