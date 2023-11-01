@@ -1,6 +1,6 @@
-import { ISectionBlog } from "../../types/blog.type";
-import { FormatCodeFromString } from "./FormatCodeFromString";
-import { FormatTextWithLinks } from "./FormatTextWithLinks";
+import { ISectionBlog } from "../../../types/blog.type";
+import { FormatCodeFromString } from "../../Global/FormatCodeFromString";
+import { FormatTextWithLinks } from "../../Global/FormatTextWithLinks";
 
 export const SectionItemBlog = ({ section }: { section: ISectionBlog }) => {
   return (

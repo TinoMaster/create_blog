@@ -34,11 +34,17 @@ export const sortSectionsBeforeInsert = (
 ) => {
   const { sections } = state;
   const newState: IBlog = state;
-  const index = sections.findIndex((section) => section.id === newSection.id);
-  const newSections = sections.slice(index);
-  newSections.forEach((section) => {
-    section.id = section.id + 1;
-  });
-  newState.sections = [...sections.slice(0, index), newSection, ...newSections];
+  if (newSection.id <= sections.length) {
+    const index = sections.findIndex((section) => section.id === newSection.id);
+    const newSections = sections.slice(index);
+    newSections.forEach((section) => {
+      section.id = section.id + 1;
+    });
+    newState.sections = [
+      ...sections.slice(0, index),
+      newSection,
+      ...newSections,
+    ];
+  } else newState.sections = [...sections, newSection];
   return newState;
 };

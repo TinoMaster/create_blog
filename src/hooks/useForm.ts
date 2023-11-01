@@ -34,6 +34,9 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     setError("");
     formRef.current?.reset;
   }, [sectionPage]);
+  useEffect(() => {
+    setActualSection(sections.length + 1);
+  }, [sections]);
 
   /* FUNCTIONS */
   const onSubmitPrincipal = async () => {
@@ -45,7 +48,7 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
         res = await blogService.saveImage(image);
       }
       if (res && res.success && res.location) {
-        dispatch(setPrincipalRD(principalContent));
+        dispatch(setPrincipalRD({ ...principalContent, image: res.location }));
         setPrincipalContent(blogs.initialPrincipalSection);
         setLoading(false);
         formRef.current?.reset;
@@ -64,7 +67,6 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
   };
 
   const completeSectionInfo = async () => {
-    section.id = actualSection;
     if (sectionPage === "image" && image !== null) {
       const res: ISaveImageRes = await blogService.saveImage(image);
       if (res.success && res.location) {
@@ -101,6 +103,7 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setError("");
+    section.id = actualSection;
     if (sectionPage !== "principal") {
       setSection({
         ...section,
@@ -112,6 +115,7 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
 
   return {
     section,
+    actualSection,
     principalContent,
     onSectionChange,
     onPrincipalChange,

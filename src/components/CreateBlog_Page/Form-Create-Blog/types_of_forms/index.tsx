@@ -24,6 +24,7 @@ export const Form = () => {
     onSectionChange,
     onPrincipalChange,
     section,
+    actualSection,
     principalContent,
     onSubmitPrincipal,
     onSubmitSection,
@@ -37,7 +38,10 @@ export const Form = () => {
     <form action="" ref={formRef} className="flex flex-col gap-4 relative">
       {error && <ErrorForm error={error} />}
       {loading && <LoadingPage />}
-      <SetIDSection onChangeSectionID={onChangeSectionID} />
+      <SetIDSection
+        onChangeSectionID={onChangeSectionID}
+        actualSection={actualSection}
+      />
       <CategoryBlog
         onPrincipalChange={onPrincipalChange}
         sectionPage={sectionPage}

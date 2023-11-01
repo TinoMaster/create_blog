@@ -1,7 +1,7 @@
 export interface IBlog {
   title: string;
   description: string;
-  category: TCategoryBlog;
+  category: TCategoryBlog | "";
   content: string;
   image: string;
   sections: ISectionBlog[];

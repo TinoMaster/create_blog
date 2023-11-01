@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { IBlog } from "../../types/blog.type";
+import { IBlog } from "../../../types/blog.type";
 import { SectionItemBlog } from "./SectionItemBlog";
-import { RootState } from "../../redux/store";
+import { RootState } from "../../../redux/store";
 
 export const Sections = ({ render }: { render: string }) => {
   const { sections }: IBlog = useSelector((state: RootState) => state.blog);

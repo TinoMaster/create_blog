@@ -19,9 +19,13 @@ export const Buttons = ({
         }
         type="button"
         value="Crear Seccion"
-        className="btn btn-secondary"
+        className="btn bg-secondary/50 hover:cursor-pointer hover:bg-secondary/70 transition-colors"
       />
-      <input type="submit" value="Crear Blog" className="btn btn-primary" />
+      <input
+        type="submit"
+        value="Crear Blog"
+        className="btn bg-primary/50 hover:cursor-pointer hover:bg-primary/80 transition-colors"
+      />
     </>
   );
 };

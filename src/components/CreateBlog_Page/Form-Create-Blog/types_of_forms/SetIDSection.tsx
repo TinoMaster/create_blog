@@ -5,9 +5,13 @@ import { IBlog } from "../../../../types/blog.type";
 
 interface SetIDSectionProps {
   onChangeSectionID: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  actualSection: number;
 }
 
-export const SetIDSection = ({ onChangeSectionID }: SetIDSectionProps) => {
+export const SetIDSection = ({
+  onChangeSectionID,
+  actualSection,
+}: SetIDSectionProps) => {
   const section: TSectionPage = useSelector(
     (state: RootState) => state.section
   );
@@ -29,6 +33,7 @@ export const SetIDSection = ({ onChangeSectionID }: SetIDSectionProps) => {
       </label>
       <select
         onChange={onChangeSectionID}
+        value={actualSection}
         name="id"
         id="input_category"
         className="input"

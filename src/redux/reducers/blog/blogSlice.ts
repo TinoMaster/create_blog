@@ -19,6 +19,7 @@ export interface BlogAction {
 }
 
 const localS = localStorage("form");
+
 const initialState: IBlog = localS ?? blogs.initialBlog;
 
 const blogSlice = createSlice({

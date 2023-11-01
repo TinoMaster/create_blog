@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { clearSection } from "../redux/reducers/blog/blogSlice";
+import { clearBlog, clearSection } from "../redux/reducers/blog/blogSlice";
+import { goBackToOtherRender } from "../utils/goBackToOtherRender";
 
 export const useRender = () => {
   const [render, setRender] = useState<string>("blog");
@@ -15,10 +16,21 @@ export const useRender = () => {
   const deleteSection = () => {
     const sectionToEdit =
       render === "principal" ? "principal" : Number(render[render.length - 1]);
-    if (sectionToEdit !== "principal") {
+    const confirm = window.confirm(
+      `Seguro que desea eliminar la seccion: ${sectionToEdit}`
+    );
+    if (sectionToEdit !== "principal" && confirm) {
       dispatch(clearSection(sectionToEdit));
+      setRender(goBackToOtherRender(render));
     }
   };
 
-  return { render, changeRender, deleteSection };
+  const deleteBlog = () => {
+    const confirm = window.confirm("Seguro que desea borrar todo el blog?");
+    if (confirm) {
+      dispatch(clearBlog());
+    }
+  };
+
+  return { render, changeRender, deleteSection, deleteBlog };
 };

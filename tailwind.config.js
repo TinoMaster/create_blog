@@ -4,8 +4,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryDark: "#191919",
-        secondaryDark: "#0E0A1D",
+        primary: "#544AF4",
+        secondary: "#63f861ff",
+        third: "#ea4f18",
+        darkMode: "#242528",
+        lightMode: "#F1F5F9",
+      },
+      fontFamily: {
+        lora: ["Lora", "serif"],
+        roboto: ["Roboto", "sans"],
+        siliguri: ["Hind-Siliguri", "sans"],
+        inter: ["Inter"],
+      },
+      maxHeight: {
+        "1080p": "1080px",
+      },
+      maxWidth: {
+        "1080p": "1920px",
+        "720p": "1100px",
+        "Web-view": "1800px",
+      },
+      fontSize: {
+        s: "9px",
       },
     },
   },
