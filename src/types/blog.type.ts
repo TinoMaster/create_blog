@@ -15,7 +15,7 @@ export interface BlogResponse extends IBlog {
 
 export interface IPrincipalSection extends Omit<IBlog, "sections"> {}
 
-export type SectionType = "code" | "text" | "image" | "video";
+export type SectionType = "code" | "text" | "image" | "video" | "markdown";
 export interface ISectionBlog {
   id: number;
   title?: string;

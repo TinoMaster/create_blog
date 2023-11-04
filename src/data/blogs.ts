@@ -17,7 +17,7 @@ const initialBlog: IBlog = {
 const initialPrincipalSection: IPrincipalSection = {
   title: "",
   description: "",
-  category: "javascript",
+  category: "",
   content: "",
   image: "",
 };

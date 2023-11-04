@@ -30,6 +30,7 @@ export const useForm = (sectionPage: TSectionPage, image: File | null) => {
   const [success, setSuccess] = useState({ success: false, message: "" });
   const [loading, setLoading] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
+  console.log(principalContent);
 
   /* EFFECTS */
   useEffect(() => {

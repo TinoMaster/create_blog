@@ -1,6 +1,7 @@
 import React from "react";
 import { describe, test, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import App from "../src/App";
 /* redux */
 import { Provider } from "react-redux";
@@ -13,6 +14,6 @@ describe("App", () => {
         <App />
       </Provider>
     );
-    screen.debug();
+    /* screen.debug(); */ //Esto me puede servir para ver como se renderiza todo el html de mi apk
   });
 });

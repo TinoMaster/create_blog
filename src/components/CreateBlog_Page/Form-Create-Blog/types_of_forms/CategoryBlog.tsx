@@ -19,7 +19,7 @@ export const CategoryBlog = ({
       <label htmlFor="category_imput" className="label">
         Category
       </label>
-      <select onChange={onPrincipalChange} name="type" className="input">
+      <select onChange={onPrincipalChange} name="category" className="input">
         <option value="" className="">
           --Eliga una categoria--
         </option>

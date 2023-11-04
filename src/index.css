@@ -14,6 +14,12 @@
   h3 {
     @apply text-xl font-bold;
   }
+  ol li {
+    @apply list-disc list-inside;
+  }
+  code {
+    @apply font-mono bg-gray-700 rounded-md p-1;
+  }
 
   /* Estilo de la barra de desplazamiento vertical */
   ::-webkit-scrollbar {

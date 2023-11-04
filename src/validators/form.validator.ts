@@ -4,8 +4,7 @@ export const validateSectionPrincipal = (section: IPrincipalSection) => {
   if (
     section.title === "" ||
     section.description === "" ||
-    section.category === undefined ||
-    section.content === ""
+    section.category === undefined
   ) {
     return false;
   }
@@ -20,12 +19,7 @@ export const validateSection = (section: ISectionBlog) => {
 };
 
 export const validateForm = (form: IBlog) => {
-  if (
-    form.title === "" ||
-    form.description === "" ||
-    form.category === "" ||
-    form.content === ""
-  ) {
+  if (form.title === "" || form.description === "" || form.category === "") {
     return false;
   }
   return true;

@@ -1,5 +1,6 @@
 import { ISectionBlog } from "../../../types/blog.type";
 import { FormatCodeFromString } from "../../Global/FormatCodeFromString";
+import { FormatInfoMarkdown } from "../../Global/FormatInfoMarkdown";
 import { FormatTextWithLinks } from "../../Global/FormatTextWithLinks";
 
 export const SectionItemBlog = ({ section }: { section: ISectionBlog }) => {
@@ -21,8 +22,13 @@ export const SectionItemBlog = ({ section }: { section: ISectionBlog }) => {
         <FormatTextWithLinks text={section.content} />
       ) : null}
       {section.type === "code" ? (
-        <div className="w-full">
+        <div style={{ whiteSpace: "pre-wrap" }} className="w-full">
           <FormatCodeFromString codeString={section.content} />
+        </div>
+      ) : null}
+      {section.type === "markdown" ? (
+        <div style={{ whiteSpace: "pre-wrap" }} className="w-full">
+          <FormatInfoMarkdown info={section.content} />
         </div>
       ) : null}
     </div>
